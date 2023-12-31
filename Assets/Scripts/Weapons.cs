@@ -10,6 +10,7 @@ public class Weapons : MonoBehaviour
 
     private Vector3 positionOffset = new Vector3(1, 1, 1);
     [SerializeField] private float speed;
+    [SerializeField] private float abilityForce;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +22,20 @@ public class Weapons : MonoBehaviour
     void Update()
     {
         GoTowardsPlayer();
+        CheckForAbility();
     }
 
     void GoTowardsPlayer()
     {
         rb.AddForce(((player.transform.position + positionOffset) - transform.position) * Time.deltaTime * speed);
     }
+
+    public virtual void CheckForAbility()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce((MainCanvas.mousePos - transform.position).normalized * abilityForce, ForceMode.Impulse);
+        }
+    }
+
 }
