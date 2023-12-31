@@ -115,6 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 142667719991558114}
   - component: {fileID: -7804730267989175170}
+  - component: {fileID: 4127017233660556264}
   m_Layer: 0
   m_Name: Fire Ball
   m_TagString: Weapon
@@ -170,6 +171,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &4127017233660556264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868959057421922222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18e11eb231221e48ad70eaf8e9ca4c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3258184566313291682
 GameObject:
   m_ObjectHideFlags: 0

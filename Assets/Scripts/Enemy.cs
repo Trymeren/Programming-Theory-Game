@@ -5,7 +5,8 @@ using TMPro;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float health = 1000;
+    [SerializeField] private float health;
+    [SerializeField] private float speed;
     private Rigidbody enemyRb;
     public TMP_Text damageText;
     private bool isImmune = false;
@@ -18,7 +19,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Move();
     }
 
     private void OnCollisionEnter(Collision other)
@@ -45,9 +46,9 @@ public class Enemy : MonoBehaviour
 
     void SpawnText(float damageToTake)
     {
-    damageText.text = damageToTake.ToString();
-    Vector3 spawnPos = transform.position + new Vector3(Random.Range(-1,1), 0, Random.Range(-1,1));
-    Instantiate(damageText, spawnPos, damageText.transform.rotation);
+        damageText.text = damageToTake.ToString();
+        Vector3 spawnPos = transform.position + new Vector3(Random.Range(-1,1), 0, Random.Range(-1,1));
+        Instantiate(damageText, spawnPos, damageText.transform.rotation);
 
     }
 
@@ -55,5 +56,11 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         isImmune = false;
+    }
+
+    virtual protected void Move()
+    {
+        Vector3 relativePos = GameObject.Find("Player").transform.position - transform.position;
+        enemyRb.AddForce(Vector3.forward * speed * Time.deltaTime);
     }
 }
