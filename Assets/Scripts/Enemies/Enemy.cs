@@ -17,9 +17,18 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    virtual protected void Update()
     {
         Move();
+        CheckForDeath();
+    }
+
+    protected void CheckForDeath()
+    {
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision other)
@@ -61,6 +70,6 @@ public class Enemy : MonoBehaviour
     virtual protected void Move()
     {
         Vector3 relativePos = GameObject.Find("Player").transform.position - transform.position;
-        enemyRb.AddForce(Vector3.forward * speed * Time.deltaTime);
+        enemyRb.AddForce(relativePos.normalized * speed * Time.deltaTime);
     }
 }

@@ -18,6 +18,8 @@ public class MainCanvas : MonoBehaviour
     {
         Vector3 tempPos = Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2, 0);
         mousePos = new Vector3(tempPos.x, tempPos.z, tempPos.y);
+        mousePos.z /= 22;
+        mousePos.x /= 22;
         uiText.text = "mouse: " + mousePos;
     }
 }
