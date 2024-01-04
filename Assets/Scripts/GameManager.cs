@@ -22,12 +22,21 @@ public class GameManager : MonoBehaviour
     {
         for(int i = 0; i < wave; i++)
         {
-            Debug.Log("spawn enemy");
+            SpawnEnemy("normal", Vector3.up);
         }
     }
 
     void SpawnEnemy(string type, Vector3 position)
     {
-        
+        GameObject enemyToSpawn = null;
+        if(type == "dummy")
+        {
+            enemyToSpawn = enemyPrefabs[0];
+        }
+        else if (type == "normal")
+        {
+            enemyToSpawn = enemyPrefabs[1];
+        }
+        Instantiate(enemyToSpawn, position, enemyToSpawn.transform.rotation);
     }
 }
