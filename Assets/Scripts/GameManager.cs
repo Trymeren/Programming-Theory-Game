@@ -9,20 +9,36 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Wave(5);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            Wave(5);
+        }
     }
 
     void Wave(int wave)
     {
         for(int i = 0; i < wave; i++)
         {
-            SpawnEnemy("normal", Vector3.up);
+            float[] xRange = {-24, 24};
+            float[] zRange = {-12.5f, 12.5f};
+            Vector3 spawnPosition;
+
+            if (Random.Range(0,2) == 0)
+            {
+                spawnPosition = new Vector3(Random.Range(-24.0f, 24.0f), 1, zRange[Random.Range(0, zRange.Length)]);
+            }
+            else
+            {
+                spawnPosition = new Vector3(xRange[Random.Range(0, xRange.Length)], 1, Random.Range(-12.5f, 12.5f));
+            }
+
+            SpawnEnemy("normal", spawnPosition);
         }
     }
 
