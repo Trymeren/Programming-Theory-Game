@@ -182,4 +182,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   speed: 1000
+  damage: 5
   damageText: {fileID: 8708686693658004201, guid: da711d8a96f878f4d86a82546095c328, type: 3}

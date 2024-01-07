@@ -5,9 +5,15 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] enemyPrefabs;
+    private int waveLevel = 1;
 
     // Start is called before the first frame update
     void Start()
+    {
+        
+    }
+
+    void Awake()
     {
         
     }
@@ -19,6 +25,8 @@ public class GameManager : MonoBehaviour
         {
             Wave(5);
         }
+
+        CheckForEnemiesLeft();
     }
 
     void Wave(int wave)
@@ -54,5 +62,14 @@ public class GameManager : MonoBehaviour
             enemyToSpawn = enemyPrefabs[1];
         }
         Instantiate(enemyToSpawn, position, enemyToSpawn.transform.rotation);
+    }
+
+    void CheckForEnemiesLeft()
+    {
+        if(GameObject.FindGameObjectsWithTag("Enemy").Length <= 0)
+        {
+            waveLevel++;
+            Wave(waveLevel);
+        }
     }
 }

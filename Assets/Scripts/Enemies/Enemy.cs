@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float health;
     [SerializeField] private float speed;
+    [SerializeField] private float damage;
     private Rigidbody enemyRb;
     public TMP_Text damageText;
     private bool isImmune = false;
@@ -40,6 +41,11 @@ public class Enemy : MonoBehaviour
             float damage = velocityFloat * other.gameObject.GetComponent<Rigidbody>().mass / 10;
             Damage(damage);
         }
+
+        if(other.gameObject.CompareTag("Player"))
+        {
+            GameObject.Find("Player").GetComponent<Player>().Damaged(damage);
+        }
     }
 
     public void Damage(float damageToTake)
@@ -56,7 +62,7 @@ public class Enemy : MonoBehaviour
     void SpawnText(float damageToTake)
     {
         damageText.text = damageToTake.ToString();
-        Vector3 spawnPos = transform.position + new Vector3(Random.Range(-1,1), 0, Random.Range(-1,1));
+        Vector3 spawnPos = transform.position + new Vector3(Random.Range(-1,1), 3, Random.Range(-1,1));
         Instantiate(damageText, spawnPos, damageText.transform.rotation);
 
     }
